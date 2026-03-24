@@ -66,5 +66,6 @@ Una vez compilado el código y generados los archivos de prueba, ejecuta el prog
 
 ``` Bash
 ./smart_backup tests/test_1GB.bin tests/sys_copy.bin tests/lib_copy.bin
-El programa imprimirá en consola el tiempo exacto en segundos que tomó cada método utilizando el reloj monotónico del procesador (CLOCK_MONOTONIC).
 ```
+El programa imprimirá en consola el tiempo exacto en segundos que tomó cada método utilizando el reloj monotónico del procesador (CLOCK_MONOTONIC).
+
