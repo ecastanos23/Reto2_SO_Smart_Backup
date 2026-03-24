@@ -42,7 +42,29 @@ make clean
 ## 5. Generación de Archivos de Prueba (Rendimiento)
 Para evaluar el sistema bajo diferentes cargas, usaremos el comando dd de Linux para generar archivos binarios exactos leyendo ceros desde /dev/zero.
 
-- A. Crear archivo de 1 KB:
+### A. Crear archivo de 1 KB:
 ``` Bash
 dd if=/dev/zero of=tests/test_1KB.bin bs=1K count=1
+```
+
+### B. Crear archivo de 1 MB:
+
+``` Bash
+dd if=/dev/zero of=tests/test_1MB.bin bs=1M count=1
+```
+
+### C. Crear archivo masivo de 1 GB:
+
+``` Bash
+dd if=/dev/zero of=tests/test_1GB.bin bs=1M count=1024
+```
+
+Justificación técnica: Usamos bs=1M (tamaño de bloque de 1 Megabyte) y count=1024 (escribir 1024 bloques) para evitar saturar la memoria RAM generando el Gigabyte en una sola pasada.
+
+## 6. Ejecución de Pruebas
+Una vez compilado el código y generados los archivos de prueba, ejecuta el programa pasando la ruta del archivo de origen y las dos rutas de destino:
+
+``` Bash
+./smart_backup tests/test_1GB.bin tests/sys_copy.bin tests/lib_copy.bin
+El programa imprimirá en consola el tiempo exacto en segundos que tomó cada método utilizando el reloj monotónico del procesador (CLOCK_MONOTONIC).
 ```
