@@ -59,7 +59,7 @@ dd if=/dev/zero of=tests/test_1MB.bin bs=1M count=1
 dd if=/dev/zero of=tests/test_1GB.bin bs=1M count=1024
 ```
 
-Justificación técnica: Se usamos bs=1M (tamaño de bloque de 1 Megabyte) y count=1024 (escribir 1024 bloques) para evitar saturar la memoria RAM generando el Gigabyte en una sola pasada.
+Se implementó bs=1M (tamaño de bloque de 1 Megabyte) y count=1024 (escribir 1024 bloques) para evitar saturar la memoria RAM generando el Gigabyte en una sola pasada.
 
 ## 6. Ejecución de Pruebas
 Una vez compilado el código y generados los archivos de prueba, ejecute el programa pasando la ruta del archivo de origen y las dos rutas de destino:
