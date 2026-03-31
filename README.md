@@ -66,7 +66,7 @@ Una vez compilado el código y generados los archivos de prueba, ejecute el prog
 
 ### Para 1 KB
 ``` Bash
-./smart_backup tests/test_KB.bin tests/sys_1KB.bin tests/lib_1KB.bin
+./smart_backup tests/test_1KB.bin tests/sys_1KB.bin tests/lib_1KB.bin
 ```
 
 ### Para 1 MB
@@ -80,5 +80,13 @@ Una vez compilado el código y generados los archivos de prueba, ejecute el prog
 ``` Bash
 ./smart_backup tests/test_1GB.bin tests/sys_1GB.bin tests/lib_1GB.bin
 ```
+
+## Prueba de Error
+Si el programa no encuentra el archivo, no debe colapsar, si no realizar el manejo de error
+
+``` Bash
+./smart_backup tests/test_GB.bin tests/sys_GB.bin tests/lib_GB.bin
+```
+
 El programa imprimirá en consola el tiempo exacto en segundos que tomó cada método utilizando el reloj monotónico del procesador (CLOCK_MONOTONIC).
 
