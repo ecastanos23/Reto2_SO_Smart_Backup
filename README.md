@@ -28,19 +28,19 @@ smart_backup_project/
 - Herramienta make.
 
 ## 4. Instrucciones de Compilación
-Para compilar el proyecto utilizando las banderas de optimización (-O2) y advertencia (-Wall -Wextra), ejecuta en la raíz del proyecto:
+Para compilar el proyecto utilizando las banderas de optimización (-O2) y advertencia (-Wall -Wextra), ejecute en la raíz del proyecto:
 
 ``` Bash
 make
 ```
 
-Esto generará el ejecutable smart_backup. Para limpiar los archivos binarios compilados, ejecuta:
+Esto generará el ejecutable smart_backup. Para limpiar los archivos binarios compilados, ejecute:
 ``` Bash
 make clean
 ```
 
 ## 5. Generación de Archivos de Prueba (Rendimiento)
-Para evaluar el sistema bajo diferentes cargas, usaremos el comando dd de Linux para generar archivos binarios exactos leyendo ceros desde /dev/zero.
+Para evaluar el sistema bajo diferentes cargas, se usa el comando dd de Linux para generar archivos binarios exactos leyendo ceros desde /dev/zero.
 
 ### A. Crear archivo de 1 KB:
 ``` Bash
@@ -59,10 +59,10 @@ dd if=/dev/zero of=tests/test_1MB.bin bs=1M count=1
 dd if=/dev/zero of=tests/test_1GB.bin bs=1M count=1024
 ```
 
-Justificación técnica: Usamos bs=1M (tamaño de bloque de 1 Megabyte) y count=1024 (escribir 1024 bloques) para evitar saturar la memoria RAM generando el Gigabyte en una sola pasada.
+Justificación técnica: Se usamos bs=1M (tamaño de bloque de 1 Megabyte) y count=1024 (escribir 1024 bloques) para evitar saturar la memoria RAM generando el Gigabyte en una sola pasada.
 
 ## 6. Ejecución de Pruebas
-Una vez compilado el código y generados los archivos de prueba, ejecuta el programa pasando la ruta del archivo de origen y las dos rutas de destino:
+Una vez compilado el código y generados los archivos de prueba, ejecute el programa pasando la ruta del archivo de origen y las dos rutas de destino:
 
 ``` Bash
 ./smart_backup tests/test_1GB.bin tests/sys_copy.bin tests/lib_copy.bin
