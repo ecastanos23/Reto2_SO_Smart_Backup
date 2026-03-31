@@ -64,13 +64,18 @@ Se implementó bs=1M (tamaño de bloque de 1 Megabyte) y count=1024 (escribir 10
 ## 6. Ejecución de Pruebas
 Una vez compilado el código y generados los archivos de prueba, ejecute el programa pasando la ruta del archivo de origen y las dos rutas de destino:
 
-### Para 1MB
+### Para 1 KB
+``` Bash
+./smart_backup tests/test_KB.bin tests/sys_1KB.bin tests/lib_1KB.bin
+```
+
+### Para 1 MB
 
 ``` Bash
 ./smart_backup tests/test_1MB.bin tests/sys_1MB.bin tests/lib_1MB.bin
 ```
 
-### Para 1GB
+### Para 1 GB
 
 ``` Bash
 ./smart_backup tests/test_1GB.bin tests/sys_1GB.bin tests/lib_1GB.bin
