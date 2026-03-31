@@ -64,8 +64,16 @@ Justificación técnica: Se usamos bs=1M (tamaño de bloque de 1 Megabyte) y cou
 ## 6. Ejecución de Pruebas
 Una vez compilado el código y generados los archivos de prueba, ejecute el programa pasando la ruta del archivo de origen y las dos rutas de destino:
 
+### Para 1MB
+
 ``` Bash
-./smart_backup tests/test_1GB.bin tests/sys_copy.bin tests/lib_copy.bin
+./smart_backup tests/test_1MB.bin tests/sys_1MB.bin tests/lib_1MB.bin
+```
+
+### Para 1GB
+
+``` Bash
+./smart_backup tests/test_1GB.bin tests/sys_1GB.bin tests/lib_1GB.bin
 ```
 El programa imprimirá en consola el tiempo exacto en segundos que tomó cada método utilizando el reloj monotónico del procesador (CLOCK_MONOTONIC).
 
