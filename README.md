@@ -82,7 +82,7 @@ Una vez compilado el código y generados los archivos de prueba, ejecute el prog
 ```
 
 ## Prueba de Error
-Si el programa no encuentra el archivo, no debe colapsar, si no realizar el manejo de error
+Si el programa no encuentra el archivo, no debe colapsar, sino realizar el manejo de error
 
 ``` Bash
 ./smart_backup tests/test_GB.bin tests/sys_GB.bin tests/lib_GB.bin
