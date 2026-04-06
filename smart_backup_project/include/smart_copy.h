@@ -10,5 +10,7 @@
 int sys_smart_copy(const char *src, const char *dest);
 // Firma de la función para la copia estándar usando funciones de biblioteca.
 int lib_standard_copy(const char *src, const char *dest);
+// Comprime un archivo existente en formato gzip. Retorna 0 en éxito, -1 en error.
+int compress_to_gzip(const char *src, const char *dest_gz);
 
 #endif

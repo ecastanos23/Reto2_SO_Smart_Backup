@@ -1,0 +1,9 @@
+Iniciando pruebas de rendimiento con BUFFER_SIZE = 4096 bytes
+Modo adicional: compresion previa al backup activada
+----------------------------------------------------
+[Compresion Inicial] Archivo temporal generado: tests/test_1KB.bin.backup_tmp.gz (0.000240 segundos)
+----------------------------------------------------
+[Syscall] Copia exitosa. Tiempo: 0.000059 segundos
+[Librería] Copia exitosa. Tiempo: 0.000059 segundos
+----------------------------------------------------
+[Resumen] Tiempo total compresion->backup: 0.000405 segundos

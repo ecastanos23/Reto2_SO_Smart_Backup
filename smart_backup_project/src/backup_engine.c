@@ -6,6 +6,7 @@
 #include <fcntl.h>   // Para las banderas O_RDONLY, O_WRONLY, etc.
 #include <unistd.h>  // Para close(), read(), write()
 #include <stdio.h>   // Para perror()
+#include <zlib.h>    // Para gzopen(), gzwrite(), gzclose()
 
 int sys_smart_copy(const char *src, const char *dest) {
     // 1. Abrir origen
@@ -97,5 +98,51 @@ int lib_standard_copy(const char *src, const char *dest) {
 
     fclose(in);
     fclose(out);
+    return 0;
+}
+
+int compress_to_gzip(const char *src, const char *dest_gz) {
+    FILE *in = fopen(src, "rb");
+    if (in == NULL) {
+        perror("Compresion: Error abriendo archivo origen");
+        return -1;
+    }
+
+    gzFile out = gzopen(dest_gz, "wb9");
+    if (out == NULL) {
+        perror("Compresion: Error creando archivo .gz");
+        fclose(in);
+        return -1;
+    }
+
+    char buffer[BUFFER_SIZE];
+    size_t bytes_read;
+
+    while ((bytes_read = fread(buffer, 1, BUFFER_SIZE, in)) > 0) {
+        int bytes_written = gzwrite(out, buffer, (unsigned int)bytes_read);
+        if (bytes_written == 0) {
+            int gz_err = 0;
+            const char *gz_msg = gzerror(out, &gz_err);
+            fprintf(stderr, "Compresion: Error escribiendo gzip: %s\n", gz_msg);
+            fclose(in);
+            gzclose(out);
+            return -1;
+        }
+    }
+
+    if (ferror(in)) {
+        perror("Compresion: Error leyendo archivo a comprimir");
+        fclose(in);
+        gzclose(out);
+        return -1;
+    }
+
+    fclose(in);
+
+    if (gzclose(out) != Z_OK) {
+        fprintf(stderr, "Compresion: Error cerrando archivo gzip\n");
+        return -1;
+    }
+
     return 0;
 }
