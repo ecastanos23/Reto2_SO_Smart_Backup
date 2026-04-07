@@ -71,24 +71,36 @@ dd if=/dev/zero of=tests/test_1MB.bin bs=1M count=1
 ### C. Crear archivo masivo de 1 GB:
 ```bash
 dd if=/dev/zero of=tests/test_1GB.bin bs=1M count=1024
-```
+``` 
 Se implementó `bs=1M` (tamaño de bloque de 1 Megabyte) y `count=1024` (escribir 1024 bloques) para evitar saturar la memoria RAM generando el Gigabyte en una sola pasada.
 
 ## 6. Ejecución de Pruebas (Backup Simple)
-Una vez compilado el código y generados los archivos de prueba, ejecute el programa pasando la ruta del archivo de origen y las dos rutas de destino:
+Los sistemas operativos Linux son "perezosos" por diseño y guardan los archivos recién leídos o creados en la memoria RAM (Page Cache). Si ejecuta el programa inmediatamente después de crear el archivo con dd, estará midiendo la velocidad de su RAM y no la de su disco duro, arrojando tiempos cercanos a 0.000 segundos.
+
+Para forzar al sistema a leer directamente desde el disco físico y obtener métricas de I/O reales, debe limpiar el caché de la memoria RAM antes de cada ejecución.
+
+Ejecute este comando de limpieza justo antes de correr smart_backup:
+```bash
+sudo sync; echo 3 | sudo tee /proc/sys/vm/drop_caches
+```
+
+Una vez compilado el código, limpiado el caché y generados los archivos de prueba, ejecute el programa pasando la ruta del archivo de origen y las dos rutas de destino:
 
 ### Para 1 KB
 ```bash
+sudo sync; echo 3 | sudo tee /proc/sys/vm/drop_caches
 ./smart_backup tests/test_1KB.bin tests/sys_base_1KB.bin tests/lib_base_1KB.bin
 ```
 
 ### Para 1 MB
 ```bash
+sudo sync; echo 3 | sudo tee /proc/sys/vm/drop_caches
 ./smart_backup tests/test_1MB.bin tests/sys_base_1MB.bin tests/lib_base_1MB.bin
 ```
 
 ### Para 1 GB
 ```bash
+sudo sync; echo 3 | sudo tee /proc/sys/vm/drop_caches
 ./smart_backup tests/test_1GB.bin tests/sys_base_1GB.bin tests/lib_base_1GB.bin
 ```
 
@@ -105,6 +117,7 @@ Permite comparar la eficiencia del flujo de backup cuando se involucra compresi�
 ### A. Modo Backup y luego Compresión
 Se crean respaldos normales y luego se comprime cada uno (`.gz`).
 ```bash
+sudo sync; echo 3 | sudo tee /proc/sys/vm/drop_caches
 ./smart_backup --compress-after tests/test_1KB.bin tests/sys_after_1KB.bin tests/lib_after_1KB.bin
 ```
 **Validación:** Los `.bin` deben coincidir con el origen.
@@ -116,6 +129,7 @@ cmp -s tests/test_1KB.bin tests/lib_after_1KB.bin && echo "lib_after OK" || echo
 ### B. Modo Compresión y luego Backup
 Se comprime el origen en un temporal, se hace el backup de los datos comprimidos y se elimina el temporal.
 ```bash
+sudo sync; echo 3 | sudo tee /proc/sys/vm/drop_caches
 ./smart_backup --compress-first tests/test_1KB.bin tests/sys_first_1KB.bin tests/lib_first_1KB.bin
 ```
 **Validación:** Los archivos resultantes son nativamente formato gzip.
