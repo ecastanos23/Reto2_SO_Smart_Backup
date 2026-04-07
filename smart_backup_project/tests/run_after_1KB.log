@@ -1,0 +1,11 @@
+Iniciando pruebas de rendimiento con BUFFER_SIZE = 4096 bytes
+Modo adicional: compresion post-backup activada
+----------------------------------------------------
+[Syscall] Copia exitosa. Tiempo: 0.000471 segundos
+[Librería] Copia exitosa. Tiempo: 0.000538 segundos
+----------------------------------------------------
+Iniciando compresion de respaldos generados...
+[Compresion Syscall] Archivo comprimido: tests/sys_after_1KB.bin.gz (0.000945 segundos)
+[Compresion Libreria] Archivo comprimido: tests/lib_after_1KB.bin.gz (0.000354 segundos)
+----------------------------------------------------
+[Resumen] Tiempo total backup->compresion: 0.002329 segundos

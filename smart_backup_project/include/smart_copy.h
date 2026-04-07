@@ -1,9 +1,16 @@
-// smart_copy.h
-// Function signatures and constants for smart backup project
+// Se define que se recibe y que se entrega en la función sys_smart_copy, así como el tamaño del buffer que se usará para la copia. 
 
 #ifndef SMART_COPY_H
 #define SMART_COPY_H
 
-// Add function signatures here
+// Definir el tamaño del buffer aquí para cambiarlo fácilmente durante las pruebas.
+#define BUFFER_SIZE 4096 
 
-#endif // SMART_COPY_H
+// Firma de la función: Retorna 0 en éxito, -1 en error.
+int sys_smart_copy(const char *src, const char *dest);
+// Firma de la función para la copia estándar usando funciones de biblioteca.
+int lib_standard_copy(const char *src, const char *dest);
+// Comprime un archivo existente en formato gzip. Retorna 0 en éxito, -1 en error.
+int compress_to_gzip(const char *src, const char *dest_gz);
+
+#endif
