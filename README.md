@@ -1,6 +1,6 @@
 # Smart Backup Kernel-Space Utility
 
-Este proyecto implementa y compara dos métodos de copia de archivos a nivel de sistema para analizar el impacto del "Context Switch" (cambio de contexto) en el rendimiento del procesador. Además, ahora soporta dos modos opcionales de compresión en formato gzip para evaluar la eficiencia total del flujo de backup.
+Este proyecto implementa y compara dos métodos de copia de archivos a nivel de sistema para analizar el impacto del "Context Switch" (cambio de contexto) en el rendimiento del procesador. Además, soporta dos modos opcionales de compresión en formato gzip para evaluar la eficiencia total del flujo de backup.
 
 ## 1. Descripción Técnica
 
